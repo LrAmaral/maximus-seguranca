@@ -1,5 +1,5 @@
 .text-hl {
-  color: #ff0000;
+  color: #fcb900;
   font-weight: 700;
 }
 
@@ -48,7 +48,7 @@ p {
 }
 
 .highlight-text {
-  color: #ff0000;
+  color: #fcb900;
   font-weight: 700;
 }
 
@@ -114,12 +114,12 @@ p {
 }
 
 .primary-btn {
-  background-color: #ff0000;
+  background-color: #fcb900;
   color: #ffffff;
 }
 
 .primary-btn:hover {
-  background-color: #cc0000;
+  background-color: #d88900;
   transform: translateY(-2px);
 }
 
@@ -163,7 +163,7 @@ p {
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #ff0000;
+  color: #fcb900;
   margin-bottom: 0.5rem;
   display: block;
 }
@@ -200,7 +200,7 @@ p {
 .feature-icon {
   width: 48px;
   height: 48px;
-  color: #ff0000;
+  color: #fcb900;
   margin-bottom: 1.5rem;
 }
 

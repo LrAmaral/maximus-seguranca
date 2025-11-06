@@ -304,7 +304,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: #ff0000;
+  color: #fcb900;
   text-decoration: none;
   font-weight: 600;
   transition: gap 0.3s ease;
@@ -343,7 +343,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: #ff0000;
+  background: #fcb900;
   color: #fff;
   padding: 1rem 2rem;
   border-radius: 50px;
@@ -353,7 +353,7 @@
 }
 
 .cta-button:hover {
-  background: #cc0000;
+  background: #d88900;
 }
 
 .send-icon {
@@ -403,6 +403,7 @@
 
 .service-card:nth-child(1) {
   animation-delay: 0.1s;
+
 }
 .service-card:nth-child(2) {
   animation-delay: 0.2s;

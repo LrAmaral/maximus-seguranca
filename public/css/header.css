@@ -189,7 +189,7 @@
 }
 
 .nav-link.active {
-  color: #ff0000;
+  color: #fcb900;
 }
 
 .nav-link::after {
@@ -199,12 +199,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #ff0000;
+  background-color: #fcb900;
   transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #ff0000;
+  color: #fcb900;
 }
 
 .nav-link:hover::after,
@@ -343,7 +343,7 @@ body {
 }
 
 .mobile-nav-link:hover {
-  color: #ff0000;
+  color: #d88900;
 }
 
 .header-scrolled {

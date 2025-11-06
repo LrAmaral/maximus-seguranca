@@ -16,7 +16,7 @@ function initHeaderEvents() {
     mobileMenu.style.right = "0";
     document.body.style.overflow = "hidden";
   }
-
+  
   function closeMenu() {
     mobileMenu.style.right = "-100%";
     document.body.style.overflow = "";
