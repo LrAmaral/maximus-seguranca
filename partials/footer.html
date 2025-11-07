@@ -2,14 +2,15 @@
   <div class="footer-container">
     <div class="footer-brand">
       <img
-        src="public/images/logo.webp"
-        alt="Clarin Facilities Logo"
+        src="public/images/logo-maximus.png"
+        alt="Maximus Segurança Logo"
         class="footer-logo"
         loading="lazy"
       />
       <p class="footer-description">
-        Excelência em manutenção predial, comprometida com qualidade e inovação
-        para sua empresa.
+        Protegemos o que é mais importante para você. Soluções em segurança
+        residencial e corporativa com tecnologia, confiabilidade e atendimento
+        especializado.
       </p>
     </div>
 
@@ -20,7 +21,7 @@
         <li><a href="#services">Serviços</a></li>
         <li><a href="#about">Sobre Nós</a></li>
         <li>
-          <a href="https://wa.me/5515998025982" target="_blank">Contato</a>
+          <a href="https://wa.me/#" target="_blank">Contato</a>
         </li>
       </ul>
     </div>
@@ -28,10 +29,10 @@
     <div class="footer-services">
       <h3>Nossos Serviços</h3>
       <ul class="footer-links-list">
-        <li>Manutenção Predial</li>
-        <li>Engenharia</li>
-        <li>Solda Industrial</li>
-        <li>Facilities</li>
+        <li>Monitoramento 24/7</li>
+        <li>Câmeras de Segurança</li>
+        <li>Controle de Acesso</li>
+        <li>Sistemas de Alarme</li>
       </ul>
     </div>
 
@@ -44,17 +45,23 @@
         </li>
         <li>
           <i data-lucide="phone" class="contact-icon"></i>
-          <span>(15) 99802-5982</span>
+          <span>(15) 9xxxx-xxxx</span>
         </li>
         <li>
           <i data-lucide="mail" class="contact-icon"></i>
-          <span>contato@clarinfacilities.com.br</span>
+          <span>contato@maximusseguranca.com.br</span>
         </li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom">
-    <p class="footer-bottom-p"></p>
+    <p class="footer-bottom-p">
+      © <span id="year"></span> Maximus Segurança. Todos os direitos reservados.
+    </p>
   </div>
 </footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>

@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="public/css/footer.css" />
     <link
       rel="shortcut icon"
-      href="public/images/logo.jpg"
+      href="public/images/logo-maximus.png"
       type="image/x-icon"
     />
     <title>Maximus Segurança</title>
@@ -48,29 +48,101 @@
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
+      // Função para corrigir caminhos de imagens após inserir HTML dinamicamente
+      function fixImagePaths(container) {
+        const images = container.querySelectorAll("img[src]");
+
+        images.forEach((img) => {
+          let src = img.getAttribute("src");
+          if (!src) return;
+
+          // Ignora URLs absolutas e data URIs
+          if (
+            src.startsWith("http") ||
+            src.startsWith("data:") ||
+            src.startsWith("//")
+          ) {
+            return;
+          }
+
+          // Se começar com /, já é um caminho absoluto da raiz
+          if (src.startsWith("/")) {
+            return;
+          }
+
+          // Converte caminho relativo para absoluto baseado na URL atual
+          try {
+            // Obtém o diretório base da URL atual
+            const currentUrl = window.location.href;
+            const baseUrl = currentUrl.substring(
+              0,
+              currentUrl.lastIndexOf("/") + 1
+            );
+            const absoluteUrl = new URL(src, baseUrl).href;
+
+            // Define o src novamente para forçar o carregamento
+            img.src = absoluteUrl;
+
+            // Adiciona tratamento de erro para debug
+            img.onerror = function () {
+              console.warn(
+                `Falha ao carregar imagem: ${absoluteUrl} (caminho original: ${src})`
+              );
+              // Tenta caminho alternativo
+              const altSrc = src.startsWith("public/") ? src : `public/${src}`;
+              const altUrl = new URL(altSrc, baseUrl).href;
+              if (this.src !== altUrl) {
+                this.src = altUrl;
+              }
+            };
+          } catch (e) {
+            console.error("Erro ao corrigir caminho da imagem:", src, e);
+          }
+        });
+      }
+
       async function loadPartial(partialId, partialPath, callback) {
-        const response = await fetch(partialPath);
-        const html = await response.text();
-        document.getElementById(partialId).innerHTML = html;
-        lucide.createIcons();
+        try {
+          const response = await fetch(partialPath);
+          if (!response.ok) {
+            throw new Error(
+              `Erro ao carregar ${partialPath}: ${response.status}`
+            );
+          }
+          const html = await response.text();
+          const container = document.getElementById(partialId);
+          container.innerHTML = html;
 
-        if (partialId === "footer") {
-          const currentDate = new Date();
-          const year = currentDate.getFullYear();
-          document.querySelector(
-            ".footer-bottom-p"
-          ).innerHTML = `&copy; ${year} Clarin Facilities. Todos os direitos reservados.`;
+          // Corrigir caminhos de imagens após inserir HTML
+          fixImagePaths(container);
+
+          lucide.createIcons();
+
+          if (partialId === "footer") {
+            const currentDate = new Date();
+            const year = currentDate.getFullYear();
+            const footerBottom = container.querySelector(".footer-bottom-p");
+            if (footerBottom) {
+              footerBottom.innerHTML = `&copy; ${year} Clarin Facilities. Todos os direitos reservados.`;
+            }
+          }
+
+          if (callback) callback();
+        } catch (error) {
+          console.error(`Erro ao carregar partial ${partialId}:`, error);
         }
-
-        if (callback) callback();
       }
 
       loadPartial("header", "partials/header.html", () => {
-        initHeaderEvents(); 
+        initHeaderEvents();
       });
 
       loadPartial("home", "partials/home.html");
-      loadPartial("services", "partials/services.html");
+      loadPartial("services", "partials/services.html", () => {
+        if (typeof initSlideshow === "function") {
+          initSlideshow();
+        }
+      });
       loadPartial("about", "partials/about.html");
       loadPartial("footer", "partials/footer.html");
     </script>

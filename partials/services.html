@@ -3,58 +3,62 @@
     <div class="services-header">
       <h2 class="section-title">Nossos Serviços</h2>
       <p class="section-subtitle">
-        Soluções completas em manutenção predial para sua empresa
+        Soluções completas em segurança residencial e corporativa.
       </p>
     </div>
 
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
-          <i data-lucide="building" class="icon"></i>
-        </div>
-        <h3>Manutenção Predial</h3>
-        <p>
-          Serviços completos de manutenção preventiva e corretiva para seu
-          edifício.
-        </p>
-        <a href="#" class="service-link">
-          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
-        </a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <i data-lucide="wrench" class="icon"></i>
-        </div>
-        <h3>Instalações</h3>
-        <p>
-          Instalação e modernização de sistemas elétricos, hidráulicos e
-          mecânicos.
-        </p>
-        <a href="#" class="service-link">
-          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
-        </a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
-          <i data-lucide="hammer" class="icon"></i>
-        </div>
-        <h3>Reformas</h3>
-        <p>
-          Reformas e adaptações para melhorar a funcionalidade do seu espaço.
-        </p>
-        <a href="#" class="service-link">
-          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
-        </a>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon">
           <i data-lucide="shield" class="icon"></i>
         </div>
-        <h3>Segurança</h3>
-        <p>Sistemas de segurança e monitoramento para sua tranquilidade.</p>
+        <h3>Monitoramento 24/7</h3>
+        <p>
+          Monitoramento contínuo para garantir a segurança da sua residência ou
+          empresa, a qualquer hora do dia ou da noite.
+        </p>
+        <a href="#" class="service-link">
+          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i data-lucide="camera" class="icon"></i>
+        </div>
+        <h3>Instalação de Câmeras de Segurança</h3>
+        <p>
+          Sistemas de câmeras de alta definição para monitoramento remoto e
+          proteção 24 horas.
+        </p>
+        <a href="#" class="service-link">
+          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i data-lucide="lock" class="icon"></i>
+        </div>
+        <h3>Controle de Acesso</h3>
+        <p>
+          Soluções de controle de acesso físico e digital para ambientes
+          corporativos e residenciais.
+        </p>
+        <a href="#" class="service-link">
+          Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
+        </a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i data-lucide="alert-circle" class="icon"></i>
+        </div>
+        <h3>Sistemas de Alarme</h3>
+        <p>
+          Sistemas de alarme inteligente para detecção de invasões e situações
+          de emergência.
+        </p>
         <a href="#" class="service-link">
           Saiba mais <i data-lucide="arrow-right" class="arrow-icon"></i>
         </a>
@@ -66,23 +70,19 @@
       <div class="slideshow-container">
         <div class="slide fade active">
           <img
-            src="public/images/img1.avif"
-            alt="Manutenção Elétrica"
+            src="public/images/camera.avif"
+            alt="Instalação de Câmeras"
             loading="lazy"
           />
-          <div class="text">Manutenção Elétrica</div>
+          <div class="text">Instalação de Câmeras de Segurança</div>
         </div>
         <div class="slide fade">
           <img
-            src="public/images/img2.avif"
-            alt="Manutenção Hidráulica"
+            src="public/images/acesso.avif"
             loading="lazy"
+            alt="Controle de Acesso"
           />
-          <div class="text">Manutenção Hidráulica</div>
-        </div>
-        <div class="slide fade">
-          <img src="public/images/img3.avif" loading="lazy" alt="Reparos Estruturais" />
-          <div class="text">Reparos Estruturais</div>
+          <div class="text">Controle de Acesso</div>
         </div>
 
         <button class="prev">&#10094;</button>
@@ -91,57 +91,19 @@
         <div class="dots">
           <span class="dot active"></span>
           <span class="dot"></span>
-          <span class="dot"></span>
         </div>
       </div>
     </div>
 
     <div class="services-cta">
       <h3>Precisa de algum serviço específico?</h3>
-      <p>Entre em contato conosco para uma avaliação personalizada</p>
-      <a href="https://wa.me/5515998025982" target="_blank" class="cta-button">
+      <p>
+        Entre em contato conosco para uma avaliação personalizada e garantir a
+        segurança do seu ambiente.
+      </p>
+      <a href="https://wa.me/#" target="_blank" class="cta-button">
         Solicitar Orçamento <i data-lucide="send" class="send-icon"></i>
       </a>
     </div>
   </div>
 </section>
-
-<script>
-  let slideIndex = 1;
-  showSlides(slideIndex);
-
-  function changeSlide(n) {
-    showSlides((slideIndex += n));
-  }
-
-  function currentSlide(n) {
-    showSlides((slideIndex = n));
-  }
-
-  function showSlides(n) {
-    const slides = document.getElementsByClassName("slide");
-    const dots = document.getElementsByClassName("dot");
-
-    if (n > slides.length) {
-      slideIndex = 1;
-    }
-    if (n < 1) {
-      slideIndex = slides.length;
-    }
-
-    for (let i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-    }
-
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-    }
-
-    slides[slideIndex - 1].style.display = "block";
-    dots[slideIndex - 1].className += " active";
-  }
-
-  setInterval(() => {
-    changeSlide(1);
-  }, 5000);
-</script>

@@ -1,12 +1,24 @@
-// Slideshow functionality
-function initSlideshow() {
-  let slideIndex = 1;
-  const slides = document.getElementsByClassName("slide");
-  const dots = document.getElementsByClassName("dot");
-  const prevButton = document.querySelector(".prev");
-  const nextButton = document.querySelector(".next");
+// Slideshow functionality - make it globally accessible
+window.initSlideshow = function initSlideshow() {
+  const slideshowContainer = document.querySelector(".slideshow-container");
+  if (!slideshowContainer) return;
 
-  function showSlides(n) {
+  // Avoid multiple initializations
+  if (slideshowContainer.dataset.initialized === "true") {
+    return;
+  }
+  slideshowContainer.dataset.initialized = "true";
+
+  let slideIndex = 0;
+  let slideInterval = null;
+  const slides = slideshowContainer.getElementsByClassName("slide");
+  const dots = slideshowContainer.getElementsByClassName("dot");
+  const prevButton = slideshowContainer.querySelector(".prev");
+  const nextButton = slideshowContainer.querySelector(".next");
+
+  if (slides.length === 0) return;
+
+  function showSlide(n) {
     // Remove active class from all slides and dots
     for (let i = 0; i < slides.length; i++) {
       slides[i].classList.remove("active");
@@ -16,59 +28,107 @@ function initSlideshow() {
     }
 
     // Adjust index if out of bounds
-    if (n > slides.length) {
-      slideIndex = 1;
-    }
-    if (n < 1) {
-      slideIndex = slides.length;
+    if (n >= slides.length) {
+      slideIndex = 0;
+    } else if (n < 0) {
+      slideIndex = slides.length - 1;
+    } else {
+      slideIndex = n;
     }
 
     // Add active class to current slide and dot
-    slides[slideIndex - 1].classList.add("active");
-    dots[slideIndex - 1].classList.add("active");
+    if (slides[slideIndex]) {
+      slides[slideIndex].classList.add("active");
+    }
+    if (dots[slideIndex]) {
+      dots[slideIndex].classList.add("active");
+    }
   }
 
-  function changeSlide(n) {
-    showSlides((slideIndex += n));
+  function nextSlide() {
+    showSlide(slideIndex + 1);
   }
 
-  function currentSlide(n) {
-    showSlides((slideIndex = n));
+  function prevSlide() {
+    showSlide(slideIndex - 1);
+  }
+
+  function goToSlide(n) {
+    showSlide(n);
+  }
+
+  function startAutoSlide() {
+    stopAutoSlide();
+    slideInterval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+  }
+
+  function stopAutoSlide() {
+    if (slideInterval) {
+      clearInterval(slideInterval);
+      slideInterval = null;
+    }
   }
 
   // Add event listeners
   if (prevButton) {
-    prevButton.addEventListener("click", () => changeSlide(-1));
+    prevButton.addEventListener("click", () => {
+      prevSlide();
+      startAutoSlide();
+    });
   }
 
   if (nextButton) {
-    nextButton.addEventListener("click", () => changeSlide(1));
+    nextButton.addEventListener("click", () => {
+      nextSlide();
+      startAutoSlide();
+    });
   }
 
   // Add click events to dots
   for (let i = 0; i < dots.length; i++) {
-    dots[i].addEventListener("click", () => currentSlide(i + 1));
+    dots[i].addEventListener("click", () => {
+      goToSlide(i);
+      startAutoSlide();
+    });
   }
 
-  // Auto advance slides
-  setInterval(() => {
-    changeSlide(1);
-  }, 5000);
-}
+  // Pause auto-slide on hover
+  slideshowContainer.addEventListener("mouseenter", stopAutoSlide);
+  slideshowContainer.addEventListener("mouseleave", startAutoSlide);
 
-// Initialize slideshow when content is loaded
-document.addEventListener("DOMContentLoaded", initSlideshow);
+  // Initialize: show first slide
+  showSlide(0);
 
-// Re-initialize slideshow when services section is loaded
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.target.id === "services" && mutation.type === "childList") {
+  // Start auto-advance
+  startAutoSlide();
+};
+
+// Auto-initialize when services section is loaded
+const servicesSection = document.getElementById("services");
+if (servicesSection) {
+  const observer = new MutationObserver(() => {
+    const slideshowContainer = document.querySelector(".slideshow-container");
+    if (
+      slideshowContainer &&
+      slideshowContainer.dataset.initialized !== "true"
+    ) {
       initSlideshow();
     }
   });
-});
 
-observer.observe(document.getElementById("services"), {
-  childList: true,
-  subtree: true,
-});
+  observer.observe(servicesSection, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+// Also try to initialize if DOM is already loaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(initSlideshow, 200);
+  });
+} else {
+  setTimeout(initSlideshow, 200);
+}
