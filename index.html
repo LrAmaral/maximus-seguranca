@@ -35,17 +35,43 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="public/css/global.css" />
-    <link rel="stylesheet" href="public/css/home.css" />
-    <link rel="stylesheet" href="public/css/about.css" />
-    <link rel="stylesheet" href="public/css/services.css" />
     <link rel="stylesheet" href="public/css/header.css" />
-    <link rel="stylesheet" href="public/css/footer.css" />
+
+    <link
+      rel="stylesheet"
+      href="public/css/home.css"
+      media="none"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="public/css/about.css"
+      media="none"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="public/css/services.css"
+      media="none"
+      onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="public/css/footer.css"
+      media="none"
+      onload="this.media='all'"
+    />
+
     <link
       rel="shortcut icon"
       href="public/images/logo-maximus.png"
       type="image/x-icon"
     />
     <title>Maximus Segurança</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8PYQGDKPFJ"
+    ></script>
   </head>
   <body class="">
     <div id="header"></div>
@@ -121,10 +147,15 @@
             );
           }
           const html = await response.text();
+
           const container = document.getElementById(partialId);
+          if (!container) {
+            console.error(`Elemento com o id ${partialId} não encontrado!`);
+            return;
+          }
+
           container.innerHTML = html;
 
-          // Corrigir caminhos de imagens após inserir HTML
           fixImagePaths(container);
 
           lucide.createIcons();
@@ -158,7 +189,9 @@
       loadPartial("footer", "partials/footer.html");
     </script>
 
-    <script src="public/js/services.js"></script>
-    <script src="public/js/header.js"></script>
+    <script src="public/js/services.js" defer></script>
+    <script src="public/js/header.js" defer></script>
+
+    <script src="https://unpkg.com/lucide@latest" defer></script>
   </body>
 </html>
