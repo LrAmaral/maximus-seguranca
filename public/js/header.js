@@ -91,6 +91,4 @@ function initHeaderEvents() {
       }
     });
   });
-
-  updateActiveLink();
 }
