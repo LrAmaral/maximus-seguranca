@@ -250,10 +250,7 @@ body {
     padding-top: 60px;
   }
 
-  .nav-menu {
-    display: none;
-  }
-
+  .nav-menu,
   .nav-contact {
     display: none;
   }
@@ -299,6 +296,13 @@ body {
   .nav-menu,
   .nav-contact {
     display: none;
+  }
+
+  .nav-contact-mobile {
+    margin-top: 0.5rem;
+    font-size: 0.925rem;
+    padding: 4px;
+    border-radius: none;
   }
 
   .mobile-menu-btn {
